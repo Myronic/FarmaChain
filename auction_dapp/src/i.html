@@ -1,0 +1,43 @@
+<table className="table table-striped">
+  <tr>
+    <td>
+      <h3><span className="text-secondary">AUCTION MANAGER</span></h3>
+    </td>
+    <td>
+      <h3><span className="lead">{this.state.manager}</span></h3>
+    </td>
+  </tr>
+  <tr>
+    <td><h3>The seller is:</h3></td>
+    <td>
+      <h3><span className="lead"> {this.state.seller} </span></h3>
+    </td>
+  </tr>
+  <tr>
+    <td><h3>Latest Bidder:</h3></td>
+    <td>
+      <h3><span className="lead"> {this.state.latestBidder}. </span></h3>
+    </td>
+  </tr>
+  <tr>
+    <td><h3>Latest Bid:</h3></td>
+    <td>
+      <h3>
+        <span className="lead">
+          {web3.utils.fromWei(this.state.latestBid, "ether")} ether
+        </span>
+      </h3>
+    </td>
+  </tr>
+
+  <tr>
+    <td><h3>Balance In Contract</h3></td>
+    <td>
+      <h3>
+        <span className="lead">
+          {web3.utils.fromWei(this.state.balance, "ether")} ether
+        </span>
+      </h3>
+    </td>
+  </tr>
+</table>

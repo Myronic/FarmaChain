@@ -33,6 +33,8 @@
   },
   "bundleDependencies": false,
   "dependencies": {
+    "bootstrap": "^4.2.1",
+    "daypilot-pro-react": "https://npm.daypilot.org/daypilot-pro-react/trial/2018.2.3297.tar.gz",
     "debug": "2.6.9",
     "encodeurl": "~1.0.2",
     "escape-html": "~1.0.3",

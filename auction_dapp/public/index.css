@@ -1,0 +1,12 @@
+#heading {
+  font-family: "Staatliches", cursive;
+  font-size: 60px;
+  /* background-color: white; */
+
+  /* color: -webkit-linear-gradient(#dce35b, #45b649); */
+  background: linear-gradient(#dce35b, #45b649);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* background-clip: text;
+  -webkit-text-fill-color: transparent; */
+}
