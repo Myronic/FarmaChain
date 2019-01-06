@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { DayPilot, DayPilotScheduler } from "daypilot-pro-react";
 import Zoom from "./Zoom";
+import App from "../App";
+import "./../App.css";
 
 class Scheduler extends Component {
   constructor(props) {

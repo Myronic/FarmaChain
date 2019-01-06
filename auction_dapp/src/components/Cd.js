@@ -1,9 +1,10 @@
 import React from "react";
+import "./../App.css";
 
 class Cd extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { time: {}, seconds: 5 };
+  constructor() {
+    super();
+    this.state = { time: {}, seconds: 200 };
     this.timer = 0;
     this.startTimer = this.startTimer.bind(this);
     this.countDown = this.countDown.bind(this);
@@ -46,21 +47,23 @@ class Cd extends React.Component {
     });
 
     // Check if we're at zero.
-    if (seconds == 0) {
+    if (seconds-- === 0) {
+      alert("Auction Timed Out !");
       clearInterval(this.timer);
     }
   }
 
-  // wait() {
-  //   while (flag === 0) flag = this.props.flag;
-  // }
-
   render() {
     return (
       <div>
-        {/* {this.wait} */}
-        {this.startTimer}
-        m: {this.state.time.m} s: {this.state.time.s}
+        <div>
+          <button onClick={this.startTimer} id="sbutton">
+            Set Limit
+          </button>
+        </div>
+        <div className="time">
+          {this.state.time.h} : {this.state.time.m} : {this.state.time.s}
+        </div>
       </div>
     );
   }

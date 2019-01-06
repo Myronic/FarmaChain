@@ -1,0 +1,32 @@
+#sbutton {
+  margin: 0px 0px 0px 0px;
+  padding: 5px;
+  background-color: gray;
+  border: 0px gray;
+  color: white;
+  font-size: 15px;
+}
+
+#button-addon2 {
+  padding: 0px 0px 0px 0px;
+  background-color: gray;
+}
+
+#drag:hover {
+  active: none;
+}
+
+.time {
+  position: absolute;
+  color: yellow;
+  top: -90px;
+  left: -40px;
+  font-size: 24px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  font-family: "Times New Roman", Times, serif;
+  padding: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-shadow: 4px 4px 4px lightgray;
+}

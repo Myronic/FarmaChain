@@ -21,7 +21,8 @@ class Converter extends Component {
           data-toggle="modal"
           data-target="#exampleModal"
         >
-          <i className="fas fa-calculator" />
+          <i className="fas fa-calculator" id="big" /> <br />
+          CALCULATOR
         </button>
 
         <div

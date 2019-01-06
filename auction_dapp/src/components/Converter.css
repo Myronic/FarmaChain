@@ -50,3 +50,8 @@ select {
 #hblock {
   display: none;
 }
+
+#big {
+  font-size: 130px;
+  background-color: #007bff;
+}

@@ -21,14 +21,11 @@ class App extends Component {
     t: "",
     flag: 0,
     time: {},
-    seconds: 5
+    seconds: ""
   };
 
   constructor(props) {
     super(props);
-    this.timer = 0;
-    this.startTimer = this.startTimer.bind(this);
-    this.countDown = this.countDown.bind(this);
   }
 
   secondsToTime(secs) {
@@ -61,19 +58,22 @@ class App extends Component {
 
   countDown() {
     // Remove one second, set state so a re-render happens.
-    let seconds = this.state.seconds - 1;
+    var seconds = this.state.seconds - 1;
     this.setState({
       time: this.secondsToTime(seconds),
       seconds: seconds
     });
 
     // Check if we're at zero.
-    if (seconds == 0) {
+    if (seconds === 0) {
+      alert("hiii");
       clearInterval(this.timer);
     }
   }
 
   async componentDidMount() {
+    console.log("mount", this.state);
+
     const manager = await auction.methods.manager().call();
     const latestBid = await auction.methods.latestBid().call();
     const latestBidder = await auction.methods.latestBidder().call();
@@ -115,15 +115,23 @@ class App extends Component {
     await auction.methods.finishAuction().send({
       from: accounts[0]
     });
+    this.setState(state => ({ seconds: "59" }));
     this.setState({ closingRemark: "Auction has been closed." });
+    this.setState(state => ({ latestBid: "0" }));
+    this.setState(state => ({ latestBidder: "0" }));
+    this.setState(state => ({ balance: "0" }));
+    this.setState(state => ({ seller: "0" }));
   };
 
   render() {
+    console.log("render", this.state);
     return (
       <div className="container">
         <Clock time1={this.state.t} />
-        <Scheduler />
-        <Converter />
+
+        <span id="drag">
+          <Scheduler />
+        </span>
         <div className="jumbotron mt-3 jumbotron-primary" id="">
           <b>
             <h1 className="text-center" id="heading">
@@ -134,6 +142,7 @@ class App extends Component {
           <table className="table table-striped">
             <tbody>
               <tr>
+                {" "}
                 <td>
                   <h5>
                     <span className="text-secondary">AUCTION MANAGER</span>
@@ -230,50 +239,57 @@ class App extends Component {
                   type="button"
                   id="button-addon2"
                 >
-                  Set Limit
+                  <Cd />
                 </button>
               </div>
+
               {/* <Cd flag={this.state.flag} /> */}
             </div>
           </div>
         </div>
 
         <hr />
-        <div className="card mb-3 ">
-          <div className="card-header ">
-            <h3 className="card-title">Bidding Form</h3>
-            <h6 className="card-subtitle text-muted">Bidding details:</h6>
+        <div className="row">
+          <div className="col-2">
+            <Converter />
           </div>
-          <div className="card-body text-center">
-            <div className="input-group mb-3">
-              <div className="input-group-prepend">
-                <span className="input-group-text">Bid Amount: ♦</span>
+          <div className="col-10">
+            <div className="card mb-3 ">
+              <div className="card-header ">
+                <h3 className="card-title">Bidding Form</h3>
+                <h6 className="card-subtitle text-muted">Bidding details:</h6>
               </div>
-              <input
-                type="text"
-                className="form-control"
-                aria-label="Enter in ethers"
-                placeholder="Enter bid here"
-                value={this.state.bidValue}
-                onChange={event =>
-                  this.setState({ bidValue: event.target.value })
-                }
-              />
-              <div className="input-group-append">
-                <span className="input-group-text">.00</span>
-                <button
-                  className="btn btn-secondary"
-                  onClick={this.onBidSubmit}
-                  type="button"
-                  id="button-addon2"
-                >
-                  Place Bid
-                </button>
+              <div className="card-body text-center">
+                <div className="input-group mb-3">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">Bid Amount: ♦</span>
+                  </div>
+                  <input
+                    type="text"
+                    className="form-control"
+                    aria-label="Enter in ethers"
+                    placeholder="Enter bid here"
+                    value={this.state.bidValue}
+                    onChange={event =>
+                      this.setState({ bidValue: event.target.value })
+                    }
+                  />
+                  <div className="input-group-append">
+                    <span className="input-group-text">.00</span>
+                    <button
+                      className="btn btn-secondary"
+                      onClick={this.onBidSubmit}
+                      type="button"
+                      id="button-addon2"
+                    >
+                      Place Bid
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
         <hr />
         <div className="text-center">
           <button
